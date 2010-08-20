@@ -17,6 +17,29 @@
 # limitations under the License.
 #
 
+group "apache" do
+  gid 48
+end
+
+user "apache" do
+  uid "48"
+  gid "apache"
+  comment "Apache"
+  home "/var/www"
+  password "!!"
+  shell "/sbin/nologin"
+end
+
+package "apache2" do
+  case node[:platform]
+  when "centos","redhat","fedora","suse"
+    package_name "httpd"
+  when "debian","ubuntu"
+    package_name "apache2"
+  end
+  action :install
+end
+
 package "apache2" do
   case node[:platform]
   when "centos","redhat","fedora","suse"
