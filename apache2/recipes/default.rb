@@ -40,16 +40,6 @@ package "apache2" do
   action :install
 end
 
-package "apache2" do
-  case node[:platform]
-  when "centos","redhat","fedora","suse"
-    package_name "httpd"
-  when "debian","ubuntu"
-    package_name "apache2"
-  end
-  action :install
-end
-
 service "apache2" do
   case node[:platform]
   when "centos","redhat","fedora","suse"
