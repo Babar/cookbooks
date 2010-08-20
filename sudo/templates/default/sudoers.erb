@@ -20,3 +20,7 @@ root    			ALL=(ALL) ALL
 # Members of the group '<%= group %>' may gain root privileges
 %<%= group %> ALL=(ALL) ALL
 <% end -%>
+
+User_Alias NAGIOS = nagios, nrpe
+Defaults:NAGIOS !requiretty
+NAGIOS  ALL=NOPASSWD:/usr/kerberos/bin/klist
