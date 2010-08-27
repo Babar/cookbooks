@@ -19,6 +19,21 @@
 # limitations under the License.
 #
 
+# This should be taken care of by the package installer
+# But just in case someone removes them..
+group "rabbitmq" do
+  gid 182
+end
+
+user "rabbitmq" do
+  uid 179
+  gid "rabbitmq"
+  comment "RabbitMQ messaging server"
+  home "/var/lib/rabbitmq"
+  password "!!"
+  shell "/bin/bash"
+end
+
 def debian_before_squeeze?
   platform?("debian") && (node.platform_version.to_f < 5.0 || (node.platform_version.to_f == 5.0 && node.platform_version !~ /.*sid/ ))
 end
