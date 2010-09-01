@@ -35,7 +35,17 @@ service "ssh" do
   else
     service_name "ssh"
   end
-  supports :restart => true
+  supports value_for_platform(
+    "debian" => { "default" => [ :restart, :reload, :status ] },
+    "ubuntu" => {
+      "8.04" => [ :restart, :reload ],
+      "default" => [ :restart, :reload, :status ]
+    },
+    "centos" => { "default" => [ :restart, :reload, :status ] },
+    "redhat" => { "default" => [ :restart, :reload, :status ] },
+    "fedora" => { "default" => [ :restart, :reload, :status ] },
+    "default" => { "default" => [:restart, :reload ] }
+  )
   action [ :enable, :start ]
 end
 
