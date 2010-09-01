@@ -31,7 +31,7 @@ include_recipe "chef::bootstrap_client"
 
 user "chef" do
   system true
-  shell "/bin/sh"
+  shell "/bin/bash"
   home node[:chef][:path]
 end
 
@@ -54,7 +54,7 @@ when "debian"
 
   include_recipe "java"
   include_recipe "rabbitmq_chef"
-when "centos","redhat","fedora"
+when "centos","redhat","fedora","scientific"
   include_recipe "java"
   include_recipe "couchdb"
   include_recipe "rabbitmq_chef"
