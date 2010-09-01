@@ -11,7 +11,7 @@ recipe            "chef::delete_validation", "Deletes validation.pem after clien
 recipe            "chef::server", "Configures a chef API server as a merb application"
 recipe            "chef::bootstrap_server", "Set up rubygem installed chef server"
 recipe            "chef::server_proxy", "Configures Apache2 proxy for API and WebUI"
-recipe            "chef::hack", "Ensures chef knows about Scientific Linux - See CHEF:1152"
+recipe            "chef::scientific", "Ensures chef knows about Scientific Linux - See CHEF:1152"
 
 %w{ ubuntu debian redhat centos fedora freebsd openbsd }.each do |os|
   supports os
