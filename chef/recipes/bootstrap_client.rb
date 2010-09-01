@@ -66,12 +66,12 @@ when "init"
 
   dist_dir = value_for_platform(
     ["ubuntu", "debian"] => { "default" => "debian" },
-    ["redhat", "centos", "fedora"] => { "default" => "redhat"}
+    ["redhat", "centos", "scientific", "fedora"] => { "default" => "redhat"}
   )
 
   conf_dir = value_for_platform(
     ["ubuntu", "debian"] => { "default" => "default" },
-    ["redhat", "centos", "fedora"] => { "default" => "sysconfig"}
+    ["redhat", "centos", "scientific", "fedora"] => { "default" => "sysconfig"}
   )
 
   chef_version = node.chef_packages.chef[:version]
