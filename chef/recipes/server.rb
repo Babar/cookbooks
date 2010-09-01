@@ -1,11 +1,13 @@
 #
 # Author:: Joshua Timberman <joshua@opscode.com>
 # Author:: Joshua Sierles <joshua@37signals.com>
+# Author:: Olivier Raginel <babar@cern.ch>
 # Cookbook Name:: chef
 # Recipe:: server
 #
 # Copyright 2008-2009, Opscode, Inc
 # Copyright 2009, 37signals
+# Copyright 2010, MIT
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

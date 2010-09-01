@@ -28,10 +28,10 @@ when "openbsd","freebsd"
   default[:chef][:cache_path] = "/var/chef/cache"
   default[:chef][:serve_path] = "/var/chef"
 else
-  default[:chef][:path]       = "/srv/chef"
-  default[:chef][:serve_path] = "/srv/chef"
-  default[:chef][:run_path]   = "#{chef[:path]}/run"
-  default[:chef][:cache_path] = "#{chef[:path]}/cache"
+  default[:chef][:path]        = "/srv/chef"
+  default[:chef][:serve_path]  = "/srv/chef"
+  default[:chef][:run_path]    = "#{chef[:path]}/run"
+  default[:chef][:cache_path]  = "#{chef[:path]}/cache"
   default[:chef][:backup_path] = "#{chef[:path]}/backup"
 end
 

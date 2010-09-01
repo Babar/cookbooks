@@ -1,11 +1,13 @@
 #
 # Author:: Joshua Timberman <joshua@opscode.com>
 # Author:: Joshua Sierles <joshua@37signals.com>
+# Author:: Olivier Raginel <babar@cern.ch>
 # Cookbook Name:: chef
 # Recipe:: client
 #
 # Copyright 2008-2010, Opscode, Inc
 # Copyright 2009, 37signals
+# Copyright 2010, MIT
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,6 +33,32 @@ ruby_block "reload_client_config" do
   end
   action :nothing
 end
+
+group "stomp" do
+  gid 171
+end
+
+group "chef" do
+  gid 172
+end
+
+user "stomp" do
+  uid 171
+  gid "stomp"
+  comment "StompServer User"
+  home "/var/lib/stompserver"
+  password "!!"
+end
+
+user "chef" do
+  uid 172
+  gid "chef"
+  comment "Chef user"
+  home "/var/lib/chef"
+  password "!!"
+end
+
+package "rubygem-chef"
 
 template "/etc/chef/client.rb" do
   source "client.rb.erb"
