@@ -2,7 +2,6 @@
 
 service "chef-client" do
   supports :status => true, :restart => true, :reload => false
-  action [:enable, :start ]
   enabled true
   running true
 end
