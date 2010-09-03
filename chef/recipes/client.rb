@@ -58,7 +58,7 @@ user "chef" do
   password "!!"
 end
 
-package "rubygem-chef"
+package "chef"
 
 template "/etc/chef/client.rb" do
   source "client.rb.erb"
