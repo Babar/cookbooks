@@ -1,0 +1,11 @@
+
+module chef 1.0;
+
+require {
+	type groupadd_t;
+	type etc_runtime_t;
+	class file { write rename create unlink setattr };
+}
+
+#============= groupadd_t ==============
+allow groupadd_t etc_runtime_t:file { write rename create unlink setattr };
