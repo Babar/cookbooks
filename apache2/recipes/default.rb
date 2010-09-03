@@ -32,7 +32,7 @@ end
 
 package "apache2" do
   case node[:platform]
-  when "centos","redhat","fedora","suse"
+  when "scientific","centos","redhat","fedora","suse"
     package_name "httpd"
   when "debian","ubuntu"
     package_name "apache2"
@@ -42,7 +42,7 @@ end
 
 service "apache2" do
   case node[:platform]
-  when "centos","redhat","fedora","suse"
+  when "scientific","centos","redhat","fedora","suse"
     service_name "httpd"
     # If restarted/reloaded too quickly httpd has a habit of failing.
     # This may happen with multiple recipes notifying apache to restart - like
@@ -58,6 +58,7 @@ service "apache2" do
     "debian" => { "4.0" => [ :restart, :reload ], "default" => [ :restart, :reload, :status ] },
     "ubuntu" => { "default" => [ :restart, :reload, :status ] },
     "centos" => { "default" => [ :restart, :reload, :status ] },
+    "scientific" => { "default" => [ :restart, :reload, :status ] },
     "redhat" => { "default" => [ :restart, :reload, :status ] },
     "fedora" => { "default" => [ :restart, :reload, :status ] },
     "default" => { "default" => [:restart, :reload ] }
@@ -65,7 +66,7 @@ service "apache2" do
   action :enable
 end
 
-if platform?("centos", "redhat", "fedora", "suse")
+if platform?("scientific","centos", "redhat", "fedora", "suse")
   directory node[:apache][:log_dir] do
     mode 0755
     action :create
@@ -133,7 +134,7 @@ end
 
 template "apache2.conf" do
   case node[:platform]
-  when "centos","redhat","fedora"
+  when "scientific","centos","redhat","fedora"
     path "#{node[:apache][:dir]}/conf/httpd.conf"
   when "debian","ubuntu"
     path "#{node[:apache][:dir]}/apache2.conf"
@@ -196,9 +197,9 @@ include_recipe "apache2::mod_env"
 include_recipe "apache2::mod_mime"
 include_recipe "apache2::mod_negotiation"
 include_recipe "apache2::mod_setenvif"
-include_recipe "apache2::mod_log_config" if platform?("centos", "redhat", "suse")
+include_recipe "apache2::mod_log_config" if platform?("scientific","centos", "redhat", "suse")
 
-# uncomment to get working example site on centos/redhat/fedora
+# uncomment to get working example site on SL/centos/redhat/fedora
 #apache_site "default"
 
 service "apache2" do

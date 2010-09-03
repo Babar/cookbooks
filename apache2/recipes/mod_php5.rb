@@ -22,7 +22,7 @@ when "debian", "ubuntu"
   package "libapache2-mod-php5" do
     action :install
   end  
-when "centos", "redhat", "fedora"
+when "scientific","centos", "redhat", "fedora"
   package "php" do
     action :install
     notifies :run, resources(:execute => "generate-module-list"), :immediately

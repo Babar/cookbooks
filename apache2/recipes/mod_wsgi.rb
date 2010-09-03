@@ -20,7 +20,7 @@
 case node[:platform]
 when "debian","ubuntu"
   package "libapache2-mod-wsgi"
-when "redhat","centos","fedora"
+when "redhat","scientific","centos","fedora"
   package "mod_wsgi"
 end
 
