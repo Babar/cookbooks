@@ -75,3 +75,6 @@ default[:apache][:worker][:minsparethreads] = 64
 default[:apache][:worker][:maxsparethreads] = 192
 default[:apache][:worker][:threadsperchild] = 64
 default[:apache][:worker][:maxrequestsperchild] = 0
+
+# This should not be there, but... I'll clean that later
+default[:apache][:userdir] = "www"
