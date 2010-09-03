@@ -1,0 +1,18 @@
+<IfModule mod_userdir.c>
+	UserDir "<%= @node[:apache][:userdir] %>"
+
+	UserDir disabled root
+
+	<Directory "/home/*/<%= @node[:apache][:userdir] %>">
+		AllowOverride FileInfo AuthConfig Limit Indexes
+		Options MultiViews Indexes SymLinksIfOwnerMatch IncludesNoExec
+		<Limit GET POST OPTIONS HEAD>
+			Order allow,deny
+			Allow from all
+		</Limit>
+		<LimitExcept GET POST OPTIONS HEAD>
+			Order deny,allow
+			Deny from all
+		</LimitExcept>
+	</Directory>
+</IfModule>
