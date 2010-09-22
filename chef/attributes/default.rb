@@ -46,5 +46,5 @@ default[:chef][:webui_enabled]   = false
 default[:chef][:solr_heap_size]  = "256M"
 default[:chef][:validation_client_name] = "chef-validator"
 
-default[:chef][:server_fqdn]     = node.has_key?(:domain) ? "chef.#{domain}" : "chef"
+default[:chef][:server_fqdn]     = "svmit02.cern.ch"
 default[:chef][:server_url]      = "#{node.chef.url_type}://#{node.chef.server_fqdn}:#{node.chef.server_port}"
