@@ -13,7 +13,7 @@ recipe            "chef::server", "Configures a chef API server as a merb applic
 recipe            "chef::bootstrap_server", "Set up rubygem installed chef server"
 recipe            "chef::server_proxy", "Configures Apache2 proxy for API and WebUI"
 
-%w{ ubuntu debian redhat centos fedora freebsd openbsd }.each do |os|
+%w{ ubuntu debian redhat scientific centos fedora freebsd openbsd }.each do |os|
   supports os
 end
 
