@@ -147,7 +147,7 @@ template "apache2.conf" do
 end
 
 template "security" do
-  path "#{node[:apache][:dir]}/conf.d/security"
+  path "#{node[:apache][:dir]}/conf.d/security.conf"
   source "security.erb"
   owner "root"
   group "root"
@@ -157,7 +157,7 @@ template "security" do
 end
 
 template "charset" do
-  path "#{node[:apache][:dir]}/conf.d/charset"
+  path "#{node[:apache][:dir]}/conf.d/charset.conf"
   source "charset.erb"
   owner "root"
   group "root"
