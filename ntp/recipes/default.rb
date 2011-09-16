@@ -28,22 +28,22 @@ package "ntp" do
   action :install
 end
 
-service node[:ntp][:service] do
-  supports :status => true, :restart => true, :reload => false
-  action :start
-end
-
 template "/etc/ntp.conf" do
   source "ntp.conf.erb"
   owner "root"
   group "root"
   mode 0644
-  notifies :restart, resources(:service => node[:ntp][:service])
+  notifies :restart, "service[ntp]"
+end
+
+service "ntp" do
+  service_name node[:ntp][:service]
+  action [:enable, :start]
 end
 
 cookbook_file "/etc/sysconfig/ntp" do
   owner "root"
   group "root"
   mode 0644
-  notifies :restart, resources(:service => node[:ntp][:service])
+  notifies :restart, "service[ntp]"
 end

@@ -69,3 +69,6 @@ keys		/etc/ntp/keys
 <% @node[:ntp][:servers].each do |ntpserver| -%>
   restrict <%= ntpserver %> mask 255.255.255.255 nomodify notrap noquery
 <% end -%>
+restrict default kod notrap nomodify nopeer noquery
+
+restrict 127.0.0.1 nomodify
