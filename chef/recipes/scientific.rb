@@ -1,12 +1,4 @@
-# Ensure chef knows the scientific platform
-cookbook_file "/usr/lib/ruby/gems/1.8/gems/chef-0.9.8/lib/chef/platform.rb" do
-  owner "root"
-  group "root"
-  mode "0644"
-  not_if "grep -q scientific /usr/lib/ruby/gems/1.8/gems/chef-0.9.8/lib/chef/platform.rb"
-end
-
-# Also ensure SElinux permissions are OK
+# Ensure SElinux permissions are OK
 service "chef-client" do
   supports :status => true, :restart => true, :reload => false
   enabled true
@@ -19,4 +11,16 @@ cookbook_file "/etc/selinux/targeted/modules/active/modules/chef.pp" do
   group "root"
   not_if do File.exists?("/etc/selinux/targeted/modules/active/modules/chef.pp") end
   notifies :restart, resources(:service => "chef-client")
+end
+
+# Ensure RBEL repository is there, and nothing else
+package "elff-release-5.3" do
+  action :purge
+end
+
+bash "install_rbel" do
+  user "root"
+  cwd "/"
+  code "rpm -Uvh http://rbel.co/rbel5"
+  not_if do File.exist?("/etc/yum.repos.d/rbel5.repo") end
 end
