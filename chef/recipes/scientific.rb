@@ -14,7 +14,7 @@ cookbook_file "/etc/selinux/targeted/modules/active/modules/chef.pp" do
 end
 
 # Ensure RBEL repository is there, and nothing else
-package "elff-release-5.3" do
+package "elff-release" do
   action :purge
 end
 
