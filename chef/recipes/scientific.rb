@@ -17,6 +17,9 @@ end
 package "elff-release" do
   action :purge
 end
+file "/etc/yum.repos.d/rbel5.repo") do
+  action :delete
+end
 
 bash "install_rbel" do
   user "root"
