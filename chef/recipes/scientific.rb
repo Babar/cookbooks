@@ -12,18 +12,3 @@ cookbook_file "/etc/selinux/targeted/modules/active/modules/chef.pp" do
   not_if do File.exists?("/etc/selinux/targeted/modules/active/modules/chef.pp") end
   notifies :restart, resources(:service => "chef-client")
 end
-
-# Ensure RBEL repository is there, and nothing else
-package "elff-release" do
-  action :purge
-end
-file "/etc/yum.repos.d/elff.repo" do
-  action :delete
-end
-
-bash "install_rbel" do
-  user "root"
-  cwd "/"
-  code "rpm -Uvh http://rbel.co/rbel5"
-  not_if do File.exist?("/etc/yum.repos.d/rbel5.repo") end
-end
